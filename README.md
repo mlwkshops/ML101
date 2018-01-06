@@ -14,8 +14,8 @@ The docker image that is served on Jupyterhub needs to be available on a public 
 **Note**: This step requires docker sign in first<br>
 ```docker push mlworkshop101/ml101```
 
-## After each update in the config.yaml file 
-Config.yaml file contains secret tokens, user settings and the docker image reference.<br>
+## Update in the config.yaml file 
+Config.yaml file contains secret tokens, user settings and the docker image reference. The docker image tag can contain a specific tag or `latest`.<br>
 ```helm upgrade ml101 jupyterhub/jupyterhub --version=v0.5  -f config.yaml```
 
 ## Verify setup
