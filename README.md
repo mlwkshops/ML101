@@ -17,3 +17,10 @@ The docker image that is served on Jupyterhub needs to be available on a public 
 ## After each update in the config.yaml file 
 Config.yaml file contains secret tokens, user settings and the docker image reference.<br>
 ```helm upgrade ml101 jupyterhub/jupyterhub --version=v0.5  -f config.yaml```
+
+## Verify setup
+Verify that the hub and proxy are running. Also note that for each new user starting their server, a new pod with their username is appearing in the pods list<br>
+```kubectl --namespace=ml101 get pod```
+<br>
+Also verify the running services by<br>
+```kubectl --namespace=ml101 get svc```
