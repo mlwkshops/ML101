@@ -1,15 +1,19 @@
 # ML101
 Machine Learning 101
 
-# How to
+# Update the JupyterHub notebooks on the server
+
+## Create a new docker image
+Changes in this git hub repository need to be reflected in the docker image as well. The docker image comprise of the packages listed in the `requirements.txt` file, and the contents of this repository. A jupyter tool `repo2docker` is used to convert this github repo to a corresponding docker image that we will serve on JupyterHub. This provides an abstraction level for the docker.<br>
+
+Update the corresponding tag after creating a new image. As a best practice use the first 7 digits of the commit SHA as suggested by the jupyterhub documentation<br>
+```jupyter-repo2docker https://github.com/mlwkshops/ml101 --image=mlworkshop101/ml101:<TAG> --no-run```
+  
+## Push the docker image to docker cloud
+The docker image that is served on Jupyterhub needs to be available on a public hosting. We are using docker cloud to host the docker image.
+**Note**: This step requires docker sign in first<br>
+```docker push mlworkshop101/ml101```
+
 ## After each update in the config.yaml file 
 Config.yaml file contains secret tokens, user settings and the docker image reference.<br>
 ```helm upgrade jupyterhub/jupyterhub --version=v0.5 --name=ml101 --namespace=ml101 -f config.yaml```
-
-## Creating a new docker image after changes in the github repo
-Remember to update the corresponding tag after creating a new image. As a best practice use the first 6 digits of the commit SHA as suggested by the jupyterhub documentation<br>
-```jupyter-repo2docker https://github.com/mlwkshops/ml101 --image=mlworkshop101/ml101:<TAG> --no-run```
-  
-## Push the docker image to docker cloud 
-Note: This step requires docker sign in first<br>
-```docker push mlworkshop101/ml101```
